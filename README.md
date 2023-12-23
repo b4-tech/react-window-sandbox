@@ -1,70 +1,44 @@
-# Getting Started with Create React App
+# React Window Sandbox
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+React Window Sandbox is a sample application that demonstrates how to use a virtualized list with infinite scrolling. It uses the `react-window` and `react-window-infinite-loader` libraries, along with an `AutoSizer` component for responsive rendering.
 
-## Available Scripts
+The data for this application is fetched from the Opendatasoft API. It fetches data about cities, and specifically about their population.
 
-In the project directory, you can run:
+## Installation
 
-### `npm start`
+Before you start, ensure you have [Node.js](https://nodejs.org/) installed on your system.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+To install the application:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+1. Clone the repository or download the code to your local machine.
+2. Navigate to the root directory of the project in your terminal/command prompt.
+3. Run `npm install` to install the project dependencies.
 
-### `npm test`
+## Usage
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+To start the application:
 
-### `npm run build`
+```bash
+npm start
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+This will start the application in development mode. Open http://localhost:3000 to view it in the browser.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+To create a production build, you can use:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```bash
+npm run build
+```
 
-### `npm run eject`
+## Features
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- The application uses `react-window` to efficiently render a large list of data. This library only renders what is visible in the viewport, which reduces the number of DOM elements and improves performance.
+- It uses `react-window-infinite-loader` to enable infinite scrolling. When the user scrolls to the end of the list, the application fetches more data from the server.
+- It uses `react-virtualized-auto-sizer` to ensure the list resizes as the browser window resizes.
+- It uses `lodash.throttle` to prevent excessive requests to the server. This can be helpful if the user scrolls very quickly.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Customizing
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- The number of items to fetch can be customized by changing the `itemsCount` constant.
+- The `Row` component is responsible for rendering each item in the list. You can customize this component to display different data or styles.
+- The `loadMoreItems` function is responsible for fetching data. You can modify this function to fetch data from a different source.

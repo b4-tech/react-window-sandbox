@@ -8,7 +8,7 @@ import "./index.css";
 const itemsCount = 500;
 
 const getUrl = (rows, start) =>
-  `https://data.opendatasoft.com/api/explore/v2.0/catalog/datasets/worldcitiespop/records?sort=population&fields=population,accentcity&rows=${rows}&start=${start}&facet=country`;
+  `https://public.opendatasoft.com/api/records/1.0/search/?dataset=worldcitiespop&sort=population&fields=population,accentcity&rows=${rows}&start=${start}&facet=country`;
 
 const Row = memo(({ index, style, data }) => {
   const item = data[index];
@@ -48,7 +48,7 @@ export default function DataList() {
       return;
     }
 
-    return fetch(getUrl(length, visibleStartIndex))
+    return fetch(getUrl(length, visibleStartIndex), { mode: "no-cors" })
       .then((response) => {
         if (!response.ok) {
           throw new Error("Network response was not ok");
@@ -69,7 +69,7 @@ export default function DataList() {
       .catch((error) => console.error("Error:", error));
   };
 
-  const loadMoreItemsThrottled = throttle(loadMoreItems, 100);
+  const loadMoreItemsThrottled = throttle(loadMoreItems, 50);
 
   return (
     <AutoSizer>
